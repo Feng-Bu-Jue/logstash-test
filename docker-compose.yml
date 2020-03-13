@@ -1,0 +1,114 @@
+version: '3.4'
+
+services:
+  logstashexemple.api:
+    image: ${DOCKER_REGISTRY-}logstashexempleapi
+    build:
+      context: .
+      dockerfile: LogStashExemple.API/Dockerfile
+    networks:
+      - elk
+    depends_on: 
+      - logstash  
+
+  elasticsearch:
+    build:
+      context: elasticsearch/
+      args:
+        ELK_VERSION: 7.5.1
+    volumes:
+      - type: bind
+        source: ./elasticsearch/config/elasticsearch.yml
+        target: /usr/share/elasticsearch/config/elasticsearch.yml
+        read_only: true
+      - type: volume
+        source: elasticsearch
+        target: /usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+      ELASTIC_PASSWORD: changeme
+      discovery.type: single-node
+      TZ: America/Sao_Paulo
+    networks:
+      - elk
+
+  logstash:
+    build:
+      context: logstash/
+      args:
+        ELK_VERSION: 7.5.1
+    volumes:
+      - type: bind
+        source: ./logstash/config/logstash.yml
+        target: /usr/share/logstash/config/logstash.yml
+        read_only: true
+      - type: bind
+        source: ./logstash/pipeline
+        target: /usr/share/logstash/pipeline
+        read_only: true
+    ports:
+      - "5044:5044"
+      - "5043:5043"
+      - "9600:9600"
+    environment:
+      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+      TZ: America/Sao_Paulo
+    networks:
+      - elk
+    depends_on:
+      - elasticsearch
+
+  kibana:
+    build:
+      context: kibana/
+      args:
+        ELK_VERSION: 7.5.1
+    volumes:
+      - type: bind
+        source: ./kibana/config/kibana.yml
+        target: /usr/share/kibana/config/kibana.yml
+        read_only: true
+    ports:
+      - "5601:5601"
+    networks:
+      - elk
+    depends_on:
+      - elasticsearch
+    environment:
+      - TZ=America/Sao_Paulo
+
+networks:
+  elk:
+    driver: bridge
+
+volumes:
+  elasticsearch:
+
+#  elkx:
+#    image: sebp/elkx
+#    ports:
+#      - "5601:5601"
+#      - "9200:9200"
+#      - "5044:5044"
+#      - "8080:8080"
+#      - "8081:8081"
+#    environment:
+#      - TZ=America/Sao_Paulo
+#
+##      # $ docker exec -it <name of the running container> bash
+##      # # $ES_HOME/bin/x-pack/setup-passwords interactive
+##      # Initiating the setup of reserved user elastic,kibana,logstash_system passwords.
+##      # You will be prompted to enter passwords as the process progresses.
+##      # Please confirm that you would like to continue [y/N]y
+##
+##      - ELASTIC_BOOTSTRAP_PASSWORD="changeme"
+#      - ELASTICSEARCH_USER=elastic
+#      - ELASTICSEARCH_PASSWORD=changeme
+#      - LOGSTASH_USER=elastic
+#      - LOGSTASH_PASSWORD=changeme
+#      - KIBANA_USER=elastic
+#      - KIBANA_PASSWORD=changeme
+#

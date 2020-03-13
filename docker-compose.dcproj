@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" Sdk="Microsoft.Docker.Sdk">
+  <PropertyGroup Label="Globals">
+    <ProjectVersion>2.1</ProjectVersion>
+    <DockerTargetOS>Linux</DockerTargetOS>
+    <ProjectGuid>3e898ad0-4815-4d5d-8b85-84b040a31b79</ProjectGuid>
+    <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
+    <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
+    <DockerServiceName>logstashexemple.api</DockerServiceName>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="docker-compose.override.yml">
+      <DependentUpon>docker-compose.yml</DependentUpon>
+    </None>
+    <None Include="docker-compose.yml" />
+    <None Include=".dockerignore" />
+    <None Include="elasticsearch\config\elasticsearch.yml" />
+    <None Include="elasticsearch\Dockerfile" />
+    <None Include="extensions\apm-server\apm-server-compose.yml" />
+    <None Include="extensions\apm-server\config\apm-server.yml" />
+    <None Include="extensions\apm-server\Dockerfile" />
+    <None Include="extensions\apm-server\README.md" />
+    <None Include="extensions\curator\config\curator.yml" />
+    <None Include="extensions\curator\config\delete_log_files_curator.yml" />
+    <None Include="extensions\curator\curator-compose.yml" />
+    <None Include="extensions\curator\Dockerfile" />
+    <None Include="extensions\curator\entrypoint.sh" />
+    <None Include="extensions\curator\README.md" />
+    <None Include="extensions\logspout\build.sh" />
+    <None Include="extensions\logspout\Dockerfile" />
+    <None Include="extensions\logspout\logspout-compose.yml" />
+    <None Include="extensions\logspout\modules.go" />
+    <None Include="extensions\logspout\README.md" />
+    <None Include="extensions\README.md" />
+    <None Include="kibana\config\kibana.yml" />
+    <None Include="kibana\Dockerfile" />
+    <None Include="logstash\config\logstash.yml" />
+    <None Include="logstash\Dockerfile" />
+    <None Include="logstash\pipeline\logstash.conf" />
+  </ItemGroup>
+</Project>

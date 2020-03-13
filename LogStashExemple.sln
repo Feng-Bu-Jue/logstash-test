@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogStashExemple.API", "LogStashExemple.API\LogStashExemple.API.csproj", "{272FECBD-BF62-4BF7-9ECE-A3C8DF806532}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{3E898AD0-4815-4D5D-8B85-84B040A31B79}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A5253D7E-73D1-4FAB-BE4D-B7703FC9AB67}"
+	ProjectSection(SolutionItems) = preProject
+		README.MD = README.MD
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{272FECBD-BF62-4BF7-9ECE-A3C8DF806532}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{272FECBD-BF62-4BF7-9ECE-A3C8DF806532}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{272FECBD-BF62-4BF7-9ECE-A3C8DF806532}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{272FECBD-BF62-4BF7-9ECE-A3C8DF806532}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E898AD0-4815-4D5D-8B85-84B040A31B79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E898AD0-4815-4D5D-8B85-84B040A31B79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E898AD0-4815-4D5D-8B85-84B040A31B79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E898AD0-4815-4D5D-8B85-84B040A31B79}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5065B129-8482-42F6-AA9E-0A5B266218B6}
+	EndGlobalSection
+EndGlobal
