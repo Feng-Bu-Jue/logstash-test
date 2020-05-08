@@ -45,6 +45,13 @@ namespace LogStashExemple.API.Controllers
             return Ok(new { isSuccess = true });
         }
 
+        [HttpGet]
+        public IActionResult Get(string command)
+        {
+            _logger.LogInformation("User named {@command} ", command);
+            return Ok(new { isSuccess = true });
+        }
+
         [HttpPost("withresult")]
         public IActionResult PostWithResult([FromBody] Payload command)
         {
