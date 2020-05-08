@@ -45,7 +45,7 @@ namespace LogStashExemple.API.Controllers
             return Ok(new { isSuccess = true });
         }
 
-        [HttpGet]
+        [HttpGet("sendcommandwithresult")]
         public IActionResult Get(string command)
         {
             _logger.LogInformation("User named {@command} ", command);
